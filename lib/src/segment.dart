@@ -1,7 +1,7 @@
-export default class Segment {
-
-    constructor (event) {
-        this.leftSweepEvent = event
-        this.rightSweepEvent = event.otherEvent
-    }
+class Segment {
+  final leftSweepEvent;
+  final rightSweepEvent;
+  Segment(event)
+      : leftSweepEvent = event,
+        rightSweepEvent = event.otherEvent;
 }

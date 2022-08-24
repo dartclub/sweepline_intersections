@@ -1,8 +1,6 @@
-testSegmentIntersect(seg1, seg2) {
-  if (seg1 == null || seg2 == null) {
-    return false;
-  }
+import 'package:sweepline_intersections/src/segment.dart';
 
+testSegmentIntersect(Segment seg1, Segment seg2) {
   if (seg1.leftSweepEvent.ringId == seg2.leftSweepEvent.ringId &&
       (seg1.rightSweepEvent.isSamePoint(seg2.leftSweepEvent) ||
           seg1.rightSweepEvent.isSamePoint(seg2.leftSweepEvent) ||
