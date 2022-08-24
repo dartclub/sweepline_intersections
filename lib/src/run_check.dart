@@ -9,7 +9,7 @@ runCheck(eventQueue, ignoreSelfIntersections) {
       ignoreSelfIntersections ? ignoreSelfIntersections : false;
 
   const intersectionPoints = [];
-  const outQueue = TinyQueue([], checkWhichSegmentHasRightEndpointFirst);
+  var outQueue = TinyQueue([], checkWhichSegmentHasRightEndpointFirst);
 
   while (eventQueue.length) {
     const event = eventQueue.pop();
@@ -23,7 +23,7 @@ runCheck(eventQueue, ignoreSelfIntersections) {
             continue;
           }
         }
-        const intersection = testSegmentIntersect(segment, otherSeg);
+        var intersection = testSegmentIntersect(segment, otherSeg);
         if (intersection != false) intersectionPoints.add(intersection);
       }
       outQueue.push(segment);
