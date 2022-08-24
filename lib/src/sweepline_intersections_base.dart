@@ -1,11 +1,9 @@
-import TinyQueue from 'tinyqueue'
+import 'package:sweepline_intersections/src/compare_events.dart';
+import 'package:sweepline_intersections/src/fill_queue.dart';
+import 'package:sweepline_intersections/src/run_check.dart';
 
-import {checkWhichEventIsLeft} from './compareEvents'
-import fillEventQueue from './fillQueue'
-import runCheck from './runCheck'
-
-export default function sweeplineIntersections (geojson, ignoreSelfIntersections) {
-    const eventQueue = new TinyQueue([], checkWhichEventIsLeft)
-    fillEventQueue(geojson, eventQueue)
-    return runCheck(eventQueue, ignoreSelfIntersections)
+sweeplineIntersections(geojson, ignoreSelfIntersections) {
+  var eventQueue = TinyQueue([], checkWhichEventIsLeft);
+  fillEventQueue(geojson, eventQueue);
+  return runCheck(eventQueue, ignoreSelfIntersections);
 }
