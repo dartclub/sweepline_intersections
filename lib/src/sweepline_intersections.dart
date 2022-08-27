@@ -1,33 +1,35 @@
+import 'package:dart_tiny_queue/dart_tiny_queue.dart';
 import 'package:sweepline_intersections/src/compare_events.dart';
 import 'package:sweepline_intersections/src/fill_queue.dart';
 import 'package:sweepline_intersections/src/run_check.dart';
+import 'package:turf/helpers.dart';
 
 class SweeplineIntersections {
-  var _eventQueue;
-  constructor() {
-    _eventQueue = TinyQueue([], checkWhichEventIsLeft);
+  late TinyQueue eventQueue;
+  SweeplineIntersections() {
+    eventQueue = TinyQueue(data: [], compare: checkWhichEventIsLeft);
   }
 
   addData(geojson, alternateEventQueue) {
     if (alternateEventQueue != null) {
-      var newQueue = TinyQueue([], checkWhichEventIsLeft);
+      var newQueue = TinyQueue(data: [], compare: checkWhichEventIsLeft);
       for (var i = 0; i < alternateEventQueue.length; i++) {
         newQueue.push(alternateEventQueue.data[i]);
       }
-      _eventQueue = newQueue;
+      eventQueue = newQueue;
     }
-    fillEventQueue(geojson, _eventQueue);
+    fillEventQueue(geojson, eventQueue);
   }
 
-  cloneEventQueue() {
-    const newQueue = TinyQueue([], checkWhichEventIsLeft);
-    for (var i = 0; i < _eventQueue.length; i++) {
-      newQueue.push(_eventQueue.data[i]);
+  TinyQueue cloneEventQueue() {
+    var newQueue = TinyQueue(data: [], compare: checkWhichEventIsLeft);
+    for (var i = 0; i < eventQueue.data!.length; i++) {
+      newQueue.push(eventQueue.data![i]);
     }
     return newQueue;
   }
 
-  getIntersections(ignoreSelfIntersections) {
-    return runCheck(_eventQueue, ignoreSelfIntersections);
+  List<Point> getIntersections(ignoreSelfIntersections) {
+    return runCheck(eventQueue, ignoreSelfIntersections);
   }
 }

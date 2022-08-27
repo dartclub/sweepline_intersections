@@ -1,7 +1,9 @@
+import 'package:sweepline_intersections/src/events.dart';
+
 class Segment {
-  final leftSweepEvent;
-  final rightSweepEvent;
-  Segment(event)
+  final Event leftSweepEvent;
+  final Event rightSweepEvent;
+  Segment(Event event)
       : leftSweepEvent = event,
-        rightSweepEvent = event.otherEvent;
+        rightSweepEvent = event.otherEvent!;
 }

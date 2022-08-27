@@ -1,27 +1,27 @@
-checkWhichEventIsLeft(e1, e2) {
-  if (e1.p.x > e2.p.x) {
+int checkWhichEventIsLeft(e1, e2) {
+  if (e1.p.lng > e2.p.lng) {
     return 1;
   }
-  if (e1.p.x < e2.p.x) {
+  if (e1.p.lng < e2.p.lng) {
     return -1;
   }
 
-  if (e1.p.y != e2.p.y) {
-    return e1.p.y > e2.p.y ? 1 : -1;
+  if (e1.p.lat != e2.p.lat) {
+    return e1.p.lat > e2.p.lat ? 1 : -1;
   }
   return 1;
 }
 
-checkWhichSegmentHasRightEndpointFirst(seg1, seg2) {
-  if (seg1.rightSweepEvent.p.x > seg2.rightSweepEvent.p.x) {
+int checkWhichSegmentHasRightEndpointFirst(seg1, seg2) {
+  if (seg1.rightSweepEvent.p.lng > seg2.rightSweepEvent.p.lng) {
     return 1;
   }
-  if (seg1.rightSweepEvent.p.x < seg2.rightSweepEvent.p.x) {
+  if (seg1.rightSweepEvent.p.lng < seg2.rightSweepEvent.p.lng) {
     return -1;
   }
 
-  if (seg1.rightSweepEvent.p.y != seg2.rightSweepEvent.p.y) {
-    return seg1.rightSweepEvent.p.y < seg2.rightSweepEvent.p.y ? 1 : -1;
+  if (seg1.rightSweepEvent.p.lat != seg2.rightSweepEvent.p.lat) {
+    return seg1.rightSweepEvent.p.lat < seg2.rightSweepEvent.p.lat ? 1 : -1;
   }
   return 1;
 }

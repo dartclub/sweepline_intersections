@@ -1,38 +1,15 @@
+import 'package:turf/helpers.dart';
+
 class Event {
-  final ringId;
-  final featureId;
-  final eventId;
-  final Map<String, dynamic> p;
-  var otherEvent;
-  var isLeftEndpoint;
+  final int ringId;
+  final int featureId;
+  final int eventId;
+  final Position p;
+  Event? otherEvent;
+  bool? isLeftEndpoint;
 
   Event(this.p, this.featureId, this.ringId, this.eventId);
-  isSamePoint(eventToCheck) {
-    return p['x'] == eventToCheck.p['x'] && p['y'] == eventToCheck.p['y'];
+  isSamePoint(Event eventToCheck) {
+    return p.lat == eventToCheck.p.lat && p.lng == eventToCheck.p.lng;
   }
 }
-
-/**
- * 
-
-
-export default class Event {
-
-    constructor (p, featureId, ringId, eventId) {
-        this.p = {
-            x: p[0],
-            y: p[1]
-        }
-        this.featureId = featureId
-        this.ringId = ringId
-        this.eventId = eventId
-
-        this.otherEvent = null
-        this.isLeftEndpoint = null
-    }
-
-    isSamePoint (eventToCheck) {
-        return this.p.x === eventToCheck.p.x && this.p.y === eventToCheck.p.y
-    }
-}
- */
