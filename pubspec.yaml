@@ -14,5 +14,6 @@ dev_dependencies:
   test: ^1.16.0
 dependencies:
   turf: ^0.0.7
-  dart_tiny_queue:
-    git: https://github.com/dartclub/dart_tiny_queue.git
+  dart_sort_queue:
+    git: https://github.com/dartclub/dart_sort_queue.git
+  collection: ^1.16.0

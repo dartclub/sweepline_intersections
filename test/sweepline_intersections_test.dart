@@ -10,15 +10,17 @@ void main() {
   group('A group of tests', () {
     var inDir = Directory('./test/fixtures/simple/');
     for (var file in inDir.listSync(recursive: true)) {
-      if (file is File && file.path.endsWith('.geojson')) {
-        test(file.path, () {
-          var inSource = file.readAsStringSync();
-          var inGeom = GeoJSONObject.fromJson(jsonDecode(inSource));
-          var ips = sweeplineIntersections(inGeom);
+      if (file is File && file.path.contains('chile')) {
+        test(
+          file.path,
+          () {
+            var inSource = file.readAsStringSync();
+            var inGeom = GeoJSONObject.fromJson(jsonDecode(inSource));
+            var ips = sweeplineIntersections(inGeom);
 
-          expect(ips, isEmpty);
-          //   t.is(ips.length, 0,  `[true] ${name}`)
-        });
+            expect(ips, isEmpty);
+          },
+        );
       }
     }
     var inDir1 = Directory('./test/fixtures/notSimple/');
@@ -30,10 +32,8 @@ void main() {
           var ips = sweeplineIntersections(geojson);
           print(ips.length);
           print((geojson as Feature).properties!["expectedIntersections"]);
-          // expect(
-          //     ips.length ==
-          //         (geojson as Feature).properties!["expectedIntersections"],
-          //     true);
+          expect(
+              ips.length == geojson.properties!["expectedIntersections"], true);
         });
       }
     }

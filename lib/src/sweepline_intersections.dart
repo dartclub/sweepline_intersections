@@ -1,35 +1,35 @@
-import 'package:dart_tiny_queue/dart_tiny_queue.dart';
+import 'package:dart_sort_queue/dart_sort_queue.dart';
 import 'package:sweepline_intersections/src/compare_events.dart';
+import 'package:sweepline_intersections/src/events.dart';
 import 'package:sweepline_intersections/src/fill_queue.dart';
 import 'package:sweepline_intersections/src/run_check.dart';
 import 'package:turf/helpers.dart';
 
 class SweeplineIntersections {
-  late TinyQueue eventQueue;
-  SweeplineIntersections() {
-    eventQueue = TinyQueue(data: [], compare: checkWhichEventIsLeft);
-  }
+  late SortQueue<Event> _eventQueue;
+  SweeplineIntersections()
+      : _eventQueue = SortQueue<Event>([], compare: checkWhichEventIsLeft);
 
-  addData(geojson, alternateEventQueue) {
+  addData(GeoJSONObject geojson, SortQueue? alternateEventQueue) {
     if (alternateEventQueue != null) {
-      var newQueue = TinyQueue(data: [], compare: checkWhichEventIsLeft);
-      for (var i = 0; i < alternateEventQueue.length; i++) {
-        newQueue.push(alternateEventQueue.data[i]);
+      var newQueue = SortQueue<Event>([], compare: checkWhichEventIsLeft);
+      for (int i = 0; i < alternateEventQueue.length; i++) {
+        newQueue.push(alternateEventQueue.elementAt(i));
       }
-      eventQueue = newQueue;
+      _eventQueue = newQueue;
     }
-    fillEventQueue(geojson, eventQueue);
+    fillEventQueue(geojson, _eventQueue);
   }
 
-  TinyQueue cloneEventQueue() {
-    var newQueue = TinyQueue(data: [], compare: checkWhichEventIsLeft);
-    for (var i = 0; i < eventQueue.data!.length; i++) {
-      newQueue.push(eventQueue.data![i]);
+  SortQueue cloneEventQueue() {
+    var newQueue = SortQueue<Event>([], compare: checkWhichEventIsLeft);
+    for (int i = 0; i < _eventQueue.length; i++) {
+      newQueue.push(_eventQueue.toList()[i]);
     }
     return newQueue;
   }
 
-  List<Point> getIntersections(ignoreSelfIntersections) {
-    return runCheck(eventQueue, ignoreSelfIntersections);
+  List<Position> getIntersections(bool ignoreSelfIntersections) {
+    return runCheck(_eventQueue, ignoreSelfIntersections);
   }
 }
