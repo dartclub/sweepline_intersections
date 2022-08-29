@@ -7,7 +7,7 @@ import 'package:turf/helpers.dart';
 
 List<Position> sweeplineIntersections(GeoJSONObject geojson,
     [bool ignoreSelfIntersections = false]) {
-  var eventQueue = SortQueue<Event>([], compare: checkWhichEventIsLeft);
+  var eventQueue = SortQueue<Event>([], checkWhichEventIsLeft);
   fillEventQueue(geojson, eventQueue);
   return runCheck(eventQueue, ignoreSelfIntersections);
 }

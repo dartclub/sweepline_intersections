@@ -10,8 +10,7 @@ import 'package:turf/helpers.dart';
 List<Position> runCheck(SortQueue<Event> eventQueue,
     [bool ignoreSelfIntersections = false]) {
   var intersectionPoints = <Position>[];
-  var outQueue =
-      SortQueue<Segment>([], compare: checkWhichSegmentHasRightEndpointFirst);
+  var outQueue = SortQueue<Segment>([], checkWhichSegmentHasRightEndpointFirst);
 
   while (eventQueue.isNotEmpty) {
     Event? event = eventQueue.pop();

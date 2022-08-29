@@ -8,11 +8,11 @@ import 'package:turf/helpers.dart';
 class SweeplineIntersections {
   late SortQueue<Event> _eventQueue;
   SweeplineIntersections()
-      : _eventQueue = SortQueue<Event>([], compare: checkWhichEventIsLeft);
+      : _eventQueue = SortQueue<Event>([], checkWhichEventIsLeft);
 
   addData(GeoJSONObject geojson, SortQueue? alternateEventQueue) {
     if (alternateEventQueue != null) {
-      var newQueue = SortQueue<Event>([], compare: checkWhichEventIsLeft);
+      var newQueue = SortQueue<Event>([], checkWhichEventIsLeft);
       for (int i = 0; i < alternateEventQueue.length; i++) {
         newQueue.push(alternateEventQueue.elementAt(i));
       }
@@ -22,7 +22,7 @@ class SweeplineIntersections {
   }
 
   SortQueue cloneEventQueue() {
-    var newQueue = SortQueue<Event>([], compare: checkWhichEventIsLeft);
+    var newQueue = SortQueue<Event>([], checkWhichEventIsLeft);
     for (int i = 0; i < _eventQueue.length; i++) {
       newQueue.push(_eventQueue.toList()[i]);
     }
