@@ -4,8 +4,8 @@ import 'package:turf/helpers.dart';
 Position? testSegmentIntersect(Segment seg1, Segment seg2) {
   if (seg1.leftSweepEvent.ringId == seg2.leftSweepEvent.ringId &&
       ( //
-          seg1.rightSweepEvent!.isSamePoint(seg2.leftSweepEvent) ||
-              seg1.rightSweepEvent!.isSamePoint(seg2.rightSweepEvent!) ||
+          seg1.rightSweepEvent!.isSamePoint(seg2.rightSweepEvent!) ||
+              seg1.rightSweepEvent!.isSamePoint(seg2.leftSweepEvent) ||
               seg1.leftSweepEvent.isSamePoint(seg2.leftSweepEvent) ||
               seg1.leftSweepEvent.isSamePoint(seg2.rightSweepEvent!))) {
     return null;
