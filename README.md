@@ -1,15 +1,19 @@
-Ported from:  https://github.com/rowanwins/sweepline-intersections
+Ported from:  [rowanwins/sweepline-intersections](https://github.com/rowanwins/sweepline-intersections)
+
 # sweepline-intersections
+
 A small and fast module using a sweepline algorithm to detect intersections between polygons and/or polylines.
 
 ## Documentation
 
 ### Install
+
 ````
-Dart pub add dart_sweepline_intersections
+dart pub add dart_sweepline_intersections
 ````
 
 ### Basic Use
+
 Valid inputs: Geojson `Feature` or `Geometry` including `Polygon`, `LineString`, `MultiPolygon`, `MultiLineString`, as well as `FeatureCollection`.
 
 Returns a List of intersection Points eg, [Point(coordinates:[x1, y1]), Point(coordinates:[x2, y2])] 
@@ -22,12 +26,14 @@ Returns a List of intersection Points eg, [Point(coordinates:[x1, y1]), Point(co
 
 Also accepts an optional boolean argument second which when set to true means the module won't detect self-intersections and will only report intersections between different features. This defaults to false.
 eg 
+
 ````dart
     var intersectionsBetweenFeature = findIntersections(featureCollection, true)
     // returns a List of intersection points between features
 ````
 
 ### Complex Use
+
 This library also provide a class-based approach which is helpful if you want to check multiple geometries against a single geometry. This allows you to save the state of the initial event queue with the primary geometry.
 
 ````dart
@@ -52,6 +58,7 @@ This library also provide a class-based approach which is helpful if you want to
 ````
 
 #### API
+
 `SweeplineIntersectionsClass()` - creates a new instance
 
 `.addData(geojson, existingQueue)` - adds geojson to the event queue. The second argument for an `existingQueue` is optional, and takes a queue generated from `.cloneEventQueue()`
@@ -87,6 +94,7 @@ Tested against
 ```` -->
 
 ## Contributing
+
 <!-- - For a live dev server run `npm run debug`. 
   - The geometry being tested can be modified in `debug/src/App.vue`
 - There are a couple of test suites
@@ -97,6 +105,7 @@ Tested against
 
 
 ## Algorithm notes
+
 The basic concept of this algorithm is based on a sweepline. Where this algorithm differs from the [bentley-ottmann algorithm](https://en.wikipedia.org/wiki/Bentley%E2%80%93Ottmann_algorithm) is that there is no use of a tree data structure to store the segments. The reason for the modification is because if you are dealing with polygons or polylines (rather than a random group of line segments) there is a reasonable assumption that there are going to be very few segments that lie on the same x plane.
 
 Removing the tree structure greatly simplifies the code. The tree structure is replaced with a priority queue of segments which is sorted by the x vertex of the right endpoint of the segments. A priority queue is already used to sort the vertices which means only 1 data structure is required.
@@ -107,6 +116,7 @@ Bentley-ottman only outperforms this library when there are several thousands ve
 
 
 ### Algorithm Steps
+
 - Vertices are entered into a priority queue sorted from left to right
 - An empty priority queue is created to store segments encountered
 - An item is removed from the priority queue
