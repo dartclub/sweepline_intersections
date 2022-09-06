@@ -24,7 +24,7 @@ class SweeplineIntersections {
   SortQueue cloneEventQueue() {
     var newQueue = SortQueue<Event>([], checkWhichEventIsLeft);
     for (int i = 0; i < _eventQueue.length; i++) {
-      newQueue.push(_eventQueue.toList()[i]);
+      newQueue.push(_eventQueue.toList()[i].clone());
     }
     return newQueue;
   }

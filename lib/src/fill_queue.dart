@@ -33,7 +33,7 @@ void processFeature(GeoJSONObject featureOrGeometry, SortQueue eventQueue) {
   for (int i = 0; i < coords.length; i++) {
     for (int ii = 0; ii < coords[i].length; ii++) {
       Position currentP = coords[i][ii][0];
-      Position nextP;
+      late Position nextP;
       _ringId = _ringId + 1;
       for (int iii = 0; iii < coords[i][ii].length - 1; iii++) {
         nextP = coords[i][ii][iii + 1];

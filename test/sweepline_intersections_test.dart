@@ -32,6 +32,7 @@ void main() {
             var inSource = file.readAsStringSync();
             var geojson = GeoJSONObject.fromJson(jsonDecode(inSource));
             var ips = sweeplineIntersections(geojson);
+            print(ips.length);
             expect(
                 ips.length ==
                     (geojson as Feature).properties!["expectedIntersections"],
