@@ -1,6 +1,5 @@
 // import {debugEventAndSegments, debugRemovingSegment} from './debug'
 import 'package:dart_sort_queue/dart_sort_queue.dart';
-import 'package:sweepline_intersections/src/compare_events.dart';
 import 'package:sweepline_intersections/src/events.dart';
 import 'package:sweepline_intersections/src/segment.dart';
 import 'package:sweepline_intersections/src/utils.dart';
@@ -9,7 +8,7 @@ import 'package:turf/helpers.dart';
 List<Position> runCheck(SortQueue<Event> eventQueue,
     [bool ignoreSelfIntersections = false]) {
   var intersectionPoints = <Position>[];
-  var outQueue = SortQueue<Segment>([], checkWhichSegmentHasRightEndpointFirst);
+  var outQueue = SortQueue<Segment>([]);
   while (eventQueue.isNotEmpty) {
     Event? event = eventQueue.pop();
 

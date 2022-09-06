@@ -1,30 +1,37 @@
-import 'package:sweepline_intersections/src/events.dart';
-import 'package:sweepline_intersections/src/segment.dart';
+// import 'package:sweepline_intersections/src/events.dart';
+// import 'package:sweepline_intersections/src/segment.dart';
 
-int checkWhichEventIsLeft(Event e1, Event e2) {
-  if (e1.position.lng > e2.position.lng) return 1;
-  if (e1.position.lng < e2.position.lng) return -1;
+// //lat is Y
+// int checkWhichEventIsLeft(Event event1, Event event2) {
+//   if (event1.position.lng > event2.position.lng) {
+//     return 1;
+//   }
+//   if (event1.position.lng < event2.position.lng) {
+//     return -1;
+//   }
 
-  if (e1.position.lat != e2.position.lat) {
-    return e1.position.lat > e2.position.lat ? 1 : -1;
-  }
-  return 1;
-}
+//   if (event1.position.lat != event2.position.lat) {
+//     return event1.position.lat > event2.position.lat ? 1 : -1;
+//   }
+//   return 1;
+// }
 
-int checkWhichSegmentHasRightEndpointFirst(Segment seg1, Segment seg2) {
-  if (seg1.rightSweepEvent!.position.lng > seg2.rightSweepEvent!.position.lng) {
-    return 1;
-  }
-  if (seg1.rightSweepEvent!.position.lng < seg2.rightSweepEvent!.position.lng) {
-    return -1;
-  }
+// int checkWhichSegmentHasRightEndpointFirst(Segment segment1, Segment segment2) {
+//   if (segment1.rightSweepEvent!.position.lng >
+//       segment2.rightSweepEvent!.position.lng) {
+//     return 1;
+//   }
+//   if (segment1.rightSweepEvent!.position.lng <
+//       segment2.rightSweepEvent!.position.lng) {
+//     return -1;
+//   }
 
-  if (seg1.rightSweepEvent!.position.lat !=
-      seg2.rightSweepEvent!.position.lat) {
-    return seg1.rightSweepEvent!.position.lat <
-            seg2.rightSweepEvent!.position.lat
-        ? 1
-        : -1;
-  }
-  return 1;
-}
+//   if (segment1.rightSweepEvent!.position.lat !=
+//       segment2.rightSweepEvent!.position.lat) {
+//     return segment1.rightSweepEvent!.position.lat <
+//             segment2.rightSweepEvent!.position.lat
+//         ? 1
+//         : -1;
+//   }
+//   return 1;
+// }

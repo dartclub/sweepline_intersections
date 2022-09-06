@@ -1,6 +1,6 @@
 import 'package:turf/helpers.dart';
 
-class Event {
+class Event implements Comparable<Event> {
   final Position position;
   final int featureId;
   final int ringId;
@@ -20,4 +20,19 @@ class Event {
   }
 
   clone() => Event(position.clone(), featureId, ringId, eventId);
+
+  @override
+  int compareTo(Event other) {
+    if (position.lng > other.position.lng) {
+      return 1;
+    }
+    if (position.lng < other.position.lng) {
+      return -1;
+    }
+
+    if (position.lat != other.position.lat) {
+      return position.lat > other.position.lat ? 1 : -1;
+    }
+    return 1;
+  }
 }

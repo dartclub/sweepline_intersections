@@ -1,5 +1,4 @@
 import 'package:dart_sort_queue/dart_sort_queue.dart';
-import 'package:sweepline_intersections/src/compare_events.dart';
 import 'package:sweepline_intersections/src/events.dart';
 import 'package:turf/helpers.dart';
 
@@ -53,7 +52,7 @@ void processFeature(GeoJSONObject featureOrGeometry, SortQueue eventQueue) {
 
         e1.otherEvent = e2;
 
-        if (checkWhichEventIsLeft(e1, e2) > 0) {
+        if (e1.compareTo(e2) > 0) {
           e2.isLeftEndpoint = true;
           e1.isLeftEndpoint = false;
         } else {
