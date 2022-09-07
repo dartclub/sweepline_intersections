@@ -33,7 +33,7 @@ void processFeature(GeoJSONObject featureOrGeometry, SortQueue eventQueue) {
     for (int ii = 0; ii < coords[i].length; ii++) {
       Position currentP = coords[i][ii][0];
       late Position nextP;
-      _ringId = _ringId + 1;
+      _ringId++;
       for (int iii = 0; iii < coords[i][ii].length - 1; iii++) {
         nextP = coords[i][ii][iii + 1];
         Event e1 = Event(
@@ -65,5 +65,5 @@ void processFeature(GeoJSONObject featureOrGeometry, SortQueue eventQueue) {
       }
     }
   }
-  _featureId = _featureId + 1;
+  _featureId++;
 }
