@@ -21,9 +21,9 @@ List<Position> runCheck(SortQueue<Event> eventQueue,
           if (otherSeg.leftSweepEvent.featureId == event.featureId) {
             continue;
           }
-          Position? intersection = testSegmentIntersect(segment, otherSeg);
-          if (intersection != null) intersectionPoints.add(intersection);
         }
+        Position? intersection = testSegmentIntersect(segment, otherSeg);
+        if (intersection != null)  intersectionPoints.add(intersection);
       }
       outQueue.push(segment);
     } else if (event.isLeftEndpoint! == false) {

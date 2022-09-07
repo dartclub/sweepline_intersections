@@ -18,7 +18,6 @@ Position? testSegmentIntersect(Segment seg1, Segment seg2) {
   num y3 = seg2.leftSweepEvent.position.lat;
   num? x4 = seg2.rightSweepEvent?.position.lng;
   num? y4 = seg2.rightSweepEvent?.position.lat;
-
   num denom = ((y4! - y3) * (x2! - x1)) - ((x4! - x3) * (y2! - y1));
   num numeA = ((x4 - x3) * (y1 - y3)) - ((y4 - y3) * (x1 - x3));
   num numeB = ((x2 - x1) * (y1 - y3)) - ((y2 - y1) * (x1 - x3));
@@ -34,5 +33,6 @@ Position? testSegmentIntersect(Segment seg1, Segment seg2) {
       y1 + (uA * (y2 - y1)),
     ]);
   }
+
   return null;
 }
