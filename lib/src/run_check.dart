@@ -7,14 +7,13 @@ import 'package:turf/helpers.dart';
 
 List<Position> runCheck(SortQueue<Event> eventQueue,
     [bool ignoreSelfIntersections = false]) {
-  var intersectionPoints = <Position>[];
-  var outQueue = SortQueue<Segment>([]);
+  List<Position> intersectionPoints = <Position>[];
+  SortQueue<Segment> outQueue = SortQueue<Segment>();
   while (eventQueue.isNotEmpty) {
     Event? event = eventQueue.pop();
-
     if (event!.isLeftEndpoint!) {
       // debugEventAndSegments(event.p, outQueue.data)
-      var segment = Segment(event);
+      Segment segment = Segment(event);
       for (int i = 0; i < outQueue.length; i++) {
         Segment otherSeg = outQueue.elementAt(i);
 
@@ -27,11 +26,10 @@ List<Position> runCheck(SortQueue<Event> eventQueue,
         }
       }
       outQueue.push(segment);
-    } else {
+    } else if (event.isLeftEndpoint! == false) {
       outQueue.pop();
       // const seg = outQueue.pop()
       // debugRemovingSegment(event.p, seg)
-
     }
   }
   return intersectionPoints;

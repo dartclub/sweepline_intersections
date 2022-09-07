@@ -19,8 +19,6 @@ class Event implements Comparable<Event> {
     return position == eventToCheck.position;
   }
 
-  clone() => Event(position.clone(), featureId, ringId, eventId);
-
   @override
   int compareTo(Event other) {
     if (position.lng > other.position.lng) {

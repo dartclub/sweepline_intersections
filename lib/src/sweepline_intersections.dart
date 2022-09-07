@@ -5,12 +5,12 @@ import 'package:sweepline_intersections/src/run_check.dart';
 import 'package:turf/helpers.dart';
 
 class SweeplineIntersections {
-  late SortQueue<Event> _eventQueue;
-  SweeplineIntersections() : _eventQueue = SortQueue<Event>([]);
+  SortQueue<Event> _eventQueue = SortQueue<Event>();
+  SweeplineIntersections();
 
   addData(GeoJSONObject geojson, SortQueue<Event>? alternateEventQueue) {
     if (alternateEventQueue != null) {
-      var newQueue = SortQueue<Event>([]);
+      SortQueue<Event> newQueue = SortQueue<Event>();
       for (int i = 0; i < alternateEventQueue.length; i++) {
         newQueue.push(alternateEventQueue.elementAt(i));
       }
@@ -19,15 +19,16 @@ class SweeplineIntersections {
     fillEventQueue(geojson, _eventQueue);
   }
 
-  SortQueue cloneEventQueue() {
-    var newQueue = SortQueue<Event>([]);
+  SortQueue<Event> cloneEventQueue() {
+    SortQueue<Event> newQueue = SortQueue<Event>();
     for (int i = 0; i < _eventQueue.length; i++) {
-      newQueue.push(_eventQueue.toList()[i].clone());
+      newQueue.push(_eventQueue.elementAt(i));
     }
     return newQueue;
   }
 
-  List<Position> getIntersections(bool ignoreSelfIntersections) {
+  List<Position> getIntersections<G extends Comparable<G>>(
+      bool ignoreSelfIntersections) {
     return runCheck(_eventQueue, ignoreSelfIntersections);
   }
 }
