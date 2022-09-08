@@ -1,3 +1,5 @@
+## 0.0.3
+- Added benchmark
 ## 0.0.2
 - Bugfix: missing condition for MultiPolygon
 ## 0.0.1
