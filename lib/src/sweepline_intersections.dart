@@ -8,7 +8,7 @@ class SweeplineIntersections {
   SortQueue<Event> _eventQueue = SortQueue<Event>();
   SweeplineIntersections();
 
-  addData(GeoJSONObject geojson, SortQueue<Event>? alternateEventQueue) {
+  addData(GeoJSONObject geojson, {SortQueue<Event>? alternateEventQueue}) {
     if (alternateEventQueue != null) {
       SortQueue<Event> newQueue = SortQueue<Event>();
       for (int i = 0; i < alternateEventQueue.length; i++) {
@@ -27,8 +27,7 @@ class SweeplineIntersections {
     return newQueue;
   }
 
-  List<Position> getIntersections<G extends Comparable<G>>(
-      bool ignoreSelfIntersections) {
+  List<Position> getIntersections(bool ignoreSelfIntersections) {
     return runCheck(_eventQueue, ignoreSelfIntersections);
   }
 }

@@ -6,10 +6,10 @@ import 'package:turf/turf.dart';
 
 void main() {
   File regression = File('./test/fixtures/notSimple/example1.geojson');
-  File fileSwitzerland = File('switzerlandKinked.geojson');
-  File chileVertical = File('chileKinked.geojson');
+  File fileSwitzerland =
+      File('./test/fixtures/notSimple/switzerlandKinked.geojson');
+  File chileVertical = File('./test/fixtures/notSimple/chileKinked.geojson');
 
-//')
   var inSource = regression.readAsStringSync();
   var inGeom = GeoJSONObject.fromJson(jsonDecode(inSource));
 
