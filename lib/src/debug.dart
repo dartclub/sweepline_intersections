@@ -5,7 +5,6 @@
 
 //     const lines = L.layerGroup([]).addTo(map)
 
-
 //     segments.forEach(function (seg) {
 //         L.polyline([
 //             [seg.leftSweepEvent.p.y, seg.leftSweepEvent.p.x],
