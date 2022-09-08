@@ -1,6 +1,6 @@
 name: sweepline_intersections
 description: A small and fast module using a sweepline algorithm to detect intersections between polygons and/or polylines.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/dartclub/sweepline_intersections
 publish_to: none
 
@@ -13,6 +13,5 @@ dev_dependencies:
 
 dependencies:
   turf: ^0.0.7
-  dart_sort_queue:
-    git: https://github.com/dartclub/dart_sort_queue.git
+  dart_sort_queue: ^0.0.2+3
   collection: ^1.16.0

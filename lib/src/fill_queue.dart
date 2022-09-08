@@ -24,9 +24,10 @@ void processFeature(GeoJSONObject featureOrGeometry, SortQueue eventQueue) {
   // standardise the input
   if (geom is Polygon || geom is MultiLineString) {
     coords.add((geom as GeometryType).coordinates as List<List<Position>>);
-  }
-  if (geom is LineString) {
+  } else if (geom is LineString) {
     coords.add([geom.coordinates]);
+  } else if (geom is MultiPolygon) {
+    coords = geom.coordinates;
   }
 
   for (int i = 0; i < coords.length; i++) {

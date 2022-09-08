@@ -8,13 +8,13 @@ import 'package:turf/helpers.dart';
 
 void main() {
   group(
-    'A group of tests',
+    'A group of tests for sweepLine',
     () {
       var inDir = Directory('./test/fixtures/simple/');
       for (var file in inDir.listSync(recursive: true)) {
         if (file is File && file.path.endsWith('.geojson')) {
           test(
-            file.path,
+            'simple fixtures: ${file.path}',
             () {
               var inSource = file.readAsStringSync();
               var inGeom = GeoJSONObject.fromJson(jsonDecode(inSource));
@@ -30,7 +30,7 @@ void main() {
       for (var file in inDir1.listSync(recursive: true)) {
         if (file is File && file.path.endsWith('.geojson')) {
           test(
-            file.path,
+            'complex fixtures: ${file.path}',
             () {
               var inSource = file.readAsStringSync();
               var inGeom = GeoJSONObject.fromJson(jsonDecode(inSource));

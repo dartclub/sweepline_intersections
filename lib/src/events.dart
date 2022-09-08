@@ -21,12 +21,8 @@ class Event implements Comparable<Event> {
 
   @override
   int compareTo(Event other) {
-    if (position.lng > other.position.lng) {
-      return 1;
-    }
-    if (position.lng < other.position.lng) {
-      return -1;
-    }
+    if (position.lng > other.position.lng) return 1;
+    if (position.lng < other.position.lng) return -1;
 
     if (position.lat != other.position.lat) {
       return position.lat > other.position.lat ? 1 : -1;
