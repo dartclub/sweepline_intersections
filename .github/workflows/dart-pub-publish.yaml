@@ -1,0 +1,53 @@
+name: Publish package to pub.dev
+on:
+  push:
+    branches:
+      - releases
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Print Dart SDK version
+        run: dart --version
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze project source
+        run: dart analyze
+        if: always()
+
+      - name: Run build_runner
+        run: dart run build_runner build --delete-conflicting-outputs
+        if: always()
+
+      - name: Setup credentials
+        env:
+          OAUTH_ACCESS_TOKEN: ${{ secrets.OAUTH_ACCESS_TOKEN }}
+          OAUTH_REFRESH_TOKEN: ${{ secrets.OAUTH_REFRESH_TOKEN }}
+          OAUTH_EXPIRATION: ${{ secrets.OAUTH_EXPIRATION }}
+        run: |
+          mkdir -p ~/.pub-cache 
+          cat <<EOF > ~/.pub-cache/credentials.json
+          {
+            "accessToken":"${OAUTH_ACCESS_TOKEN}",
+            "refreshToken":"${OAUTH_REFRESH_TOKEN}",
+            "tokenEndpoint":"https://accounts.google.com/o/oauth2/token",
+            "scopes": [ "openid", "https://www.googleapis.com/auth/userinfo.email" ],
+            "expiration": ${OAUTH_EXPIRATION}
+          }
+          EOF
+
+      - name: Publish package
+        run: dart pub publish --force
+        if: always()
