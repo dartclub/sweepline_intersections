@@ -15,3 +15,4 @@ dependencies:
   turf: ^0.0.7
   dart_sort_queue: ^0.0.2+3
   collection: ^1.16.0
+  benchmark: ^0.3.0

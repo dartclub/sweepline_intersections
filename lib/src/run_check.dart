@@ -23,7 +23,7 @@ List<Position> runCheck(SortQueue<Event> eventQueue,
           }
         }
         Position? intersection = testSegmentIntersect(segment, otherSeg);
-        if (intersection != null)  intersectionPoints.add(intersection);
+        if (intersection != null) intersectionPoints.add(intersection);
       }
       outQueue.push(segment);
     } else if (event.isLeftEndpoint! == false) {
