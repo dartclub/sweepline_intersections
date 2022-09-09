@@ -1,10 +1,9 @@
 import 'dart:convert';
-
-import 'package:sweepline_intersections/sweepline_intersections.dart';
 import 'package:test/test.dart';
+import 'package:turf/helpers.dart';
 import 'dart:io';
 
-import 'package:turf/helpers.dart';
+import 'package:sweepline_intersections/sweepline_intersections.dart';
 
 void main() {
   group(
