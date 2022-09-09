@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:collection/collection.dart';
 import 'package:sweepline_intersections/src/sweepline_intersections.dart';
 import 'package:turf/helpers.dart';
 

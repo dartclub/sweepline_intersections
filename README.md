@@ -19,8 +19,8 @@ Valid inputs: Geojson `Feature` or `Geometry` including `Polygon`, `LineString`,
 Returns a List of intersection Points eg, [Point(coordinates:Position(lng:x1, lat:y1)), Point(coordinates:Position(lng:x2, lat:y2)] 
 
 ````dart
-    var box = Feature(geometry: Polygon(coordinates: [[Position.of([0, 0]), Position.of([1, 0]), Position.of([1, 1]), Position.of([0, 1]), Position.of([0, 0])]]))
-    var intersections = sweeplineIntersections(box)
+    var box = Feature(geometry: Polygon(coordinates: [[Position.of([0, 0]), Position.of([1, 0]), Position.of([1, 1]), Position.of([0, 1]), Position.of([0, 0])]]));
+    var intersections = sweeplineIntersections(box);
     // returns a List of self-intersection Points
 ````
 
@@ -28,7 +28,7 @@ Also accepts an optional boolean argument second which when set to true means th
 eg 
 
 ````dart
-    var intersectionsBetweenFeature = sweeplineIntersections(featureCollection, true)
+    var intersectionsBetweenFeature = sweeplineIntersections(featureCollection, true);
     // returns a List of intersection Points between Features
 ````
 
@@ -38,22 +38,32 @@ This library also provide a class-based approach which is helpful if you want to
 
 ````dart
     import 'package:dart_sweepline_intersections/sweepline_intersections.dart';
-
+    main(){
     // create the base instance
     var sl = SweeplineIntersections();
-    sl.addData(inGeom);
+    sl.addData(aGeom);
     // clone the event queue in the original state so you can reuse it
     var origQueue = sl.cloneEventQueue();
-    var f = FeatureCollection();
-    // now you can iterate through some other set of features saving
+    List<Position> positions = [
+    Position.of([21.93869948387146, 49.99897434944081]),
+    Position.of([21.93869948387100, 49.99897434944032]),
+    ];
+    var f = FeatureCollection(
+    features: [
+      Feature(
+        geometry: LineString(coordinates: positions),
+      ),
+    ],
+    );    // now you can iterate through some other set of features saving
     // the overhead of having to populate the complete queue multiple times
     for (var feature in f.features) {
     // add another feature to test against your original data
     sl.addData(feature, alternateEventQueue: origQueue);
     // check if those two features intersect
     // add an optional boolean argument to ignore self-intersections
+    }
     var intersectionPoints = sl.getIntersections(true);
-    })
+    }
 ````
 
 #### API
