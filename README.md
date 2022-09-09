@@ -37,7 +37,7 @@ eg
 This library also provide a class-based approach which is helpful if you want to check multiple geometries against a single geometry. This allows you to save the state of the initial event queue with the primary geometry.
 
 ````dart
-    import 'package:dart_sweepline_intersections/sweepline_intersections.dart';
+    import 'package:sweepline_intersections/sweepline_intersections.dart';
     main(){
     // create the base instance
     var sl = SweeplineIntersections();
