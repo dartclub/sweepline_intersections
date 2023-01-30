@@ -1,3 +1,5 @@
+## 0.0.3+2
+- bugfix: corrected the package name
 ## 0.0.3+1
 - readme update with correct pub address
 ## 0.0.3
