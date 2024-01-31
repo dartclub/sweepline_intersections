@@ -1,5 +1,11 @@
+
 ## 0.0.4
+
 - This is solely a quality release, without new functionality.
+
+## 0.0.3+2
+
+- bugfix: corrected the package name
 
 ## 0.0.3+1
 

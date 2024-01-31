@@ -9,7 +9,7 @@ A small and fast module using a sweepline algorithm to detect intersections betw
 ### Install
 
 ````
-dart pub add dart_sweepline_intersections
+dart pub add sweepline_intersections
 ````
 
 ### Basic Use
